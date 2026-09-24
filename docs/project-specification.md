@@ -90,13 +90,13 @@ These are Phase 2 ideas only and will not be scheduled until the MVP is stable a
 
 **Database solution:** Supabase PostgreSQL. It supplies a managed relational database that fits the ownership and one-to-many relationships below, and works with the selected authentication and deployment stack.
 
-| Entity | Key fields |
-| ------ | ---------- |
-| **User** | `id` (Auth.js user ID), `email` (unique), `name`, `imageUrl` (nullable), `createdAt`, `updatedAt` |
-| **WorkoutRoutine** | `id`, `userId` (FK), `name`, `notes` (nullable), `createdAt`, `updatedAt` |
+| Entity              | Key fields                                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **User**            | `id` (Auth.js user ID), `email` (unique), `name`, `imageUrl` (nullable), `createdAt`, `updatedAt`                                          |
+| **WorkoutRoutine**  | `id`, `userId` (FK), `name`, `notes` (nullable), `createdAt`, `updatedAt`                                                                  |
 | **RoutineExercise** | `id`, `routineId` (FK), `name`, `plannedSets`, `plannedReps`, `plannedWeight` (nullable decimal), `displayOrder`, `createdAt`, `updatedAt` |
-| **WorkoutSession** | `id`, `userId` (FK), `routineId` (nullable FK), `completedAt`, `notes` (nullable), `createdAt` |
-| **CompletedSet** | `id`, `sessionId` (FK), `exerciseName`, `actualSets`, `actualReps`, `actualWeight` (nullable decimal), `displayOrder` |
+| **WorkoutSession**  | `id`, `userId` (FK), `routineId` (nullable FK), `completedAt`, `notes` (nullable), `createdAt`                                             |
+| **CompletedSet**    | `id`, `sessionId` (FK), `exerciseName`, `actualSets`, `actualReps`, `actualWeight` (nullable decimal), `displayOrder`                      |
 
 ```text
 User
@@ -124,16 +124,16 @@ All routine and session requests must confirm that the signed-in user owns the r
 
 ### MVP routes
 
-| Route | Purpose | Access |
-| ----- | ------- | ------ |
-| `/` | Public landing page; directs signed-in users to the dashboard. | Public |
-| `/login` | Sign-in form. | Public |
-| `/signup` | Account-registration form. | Public |
-| `/dashboard` | Recent sessions and total-session summary. | Signed in |
-| `/workouts` | List, create, and manage workout routines. | Signed in |
+| Route            | Purpose                                                                     | Access        |
+| ---------------- | --------------------------------------------------------------------------- | ------------- |
+| `/`              | Public landing page; directs signed-in users to the dashboard.              | Public        |
+| `/login`         | Sign-in form.                                                               | Public        |
+| `/signup`        | Account-registration form.                                                  | Public        |
+| `/dashboard`     | Recent sessions and total-session summary.                                  | Signed in     |
+| `/workouts`      | List, create, and manage workout routines.                                  | Signed in     |
 | `/workouts/[id]` | Routine detail and editor, including routine exercises and session logging. | Routine owner |
-| `/history` | Completed workout-session history, newest first. | Signed in |
-| `/profile` | Basic account profile and sign-out action. | Signed in |
+| `/history`       | Completed workout-session history, newest first.                            | Signed in     |
+| `/profile`       | Basic account profile and sign-out action.                                  | Signed in     |
 
 ### Component architecture
 
@@ -196,19 +196,19 @@ Use at least five shared components across pages: `AppHeader`, `PageTitle`, `Pri
 
 ### Design tokens and layout conventions
 
-| Token | Decision |
-| ----- | -------- |
-| Primary background | `#0F172A` (slate 950) |
-| Surface / card | `#1E293B` (slate 800) |
-| Primary text | `#F8FAFC` (slate 50) |
-| Secondary text | `#CBD5E1` (slate 300) |
-| Accent / primary action | `#22C55E` (green 500) |
-| Accent hover | `#16A34A` (green 600) |
-| Error | `#F87171` (red 400) |
-| Typography | Geist Sans for interface text, using Next.js font optimization; a system sans-serif fallback. |
-| Spacing | Tailwind's 4px base scale. Use `gap-4` for compact groups, `gap-6` within cards, and `py-8`/`py-12` between page sections. |
-| Layout | Mobile-first single column; centered `max-w-6xl` page container; cards use `rounded-xl`, `border-slate-700`, and consistent `p-4` or `p-6` padding. |
-| UI library | Tailwind CSS utilities and small project-owned components; do not introduce a second component library for the MVP. |
+| Token                   | Decision                                                                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Primary background      | `#0F172A` (slate 950)                                                                                                                               |
+| Surface / card          | `#1E293B` (slate 800)                                                                                                                               |
+| Primary text            | `#F8FAFC` (slate 50)                                                                                                                                |
+| Secondary text          | `#CBD5E1` (slate 300)                                                                                                                               |
+| Accent / primary action | `#22C55E` (green 500)                                                                                                                               |
+| Accent hover            | `#16A34A` (green 600)                                                                                                                               |
+| Error                   | `#F87171` (red 400)                                                                                                                                 |
+| Typography              | Geist Sans for interface text, using Next.js font optimization; a system sans-serif fallback.                                                       |
+| Spacing                 | Tailwind's 4px base scale. Use `gap-4` for compact groups, `gap-6` within cards, and `py-8`/`py-12` between page sections.                          |
+| Layout                  | Mobile-first single column; centered `max-w-6xl` page container; cards use `rounded-xl`, `border-slate-700`, and consistent `p-4` or `p-6` padding. |
+| UI library              | Tailwind CSS utilities and small project-owned components; do not introduce a second component library for the MVP.                                 |
 
 ## Next.js, API & Code Standards
 
@@ -249,21 +249,27 @@ Auth.js route handlers provide sign-in and sign-out capabilities; no custom pass
 
 ## GitHub Project Board Plan
 
-Create a **Week 04** milestone and add the P0 issues below. Dylan Cleghorn is the current sole team member, so each issue is initially assigned to Dylan; redistribute these by frontend, backend, or QA interest when teammates join.
+Use a milestone for each remaining delivery week. Dylan Cleghorn is the current sole team member, so each issue is initially assigned to Dylan; redistribute these by frontend, backend, or QA interest when teammates join.
 
-| Issue | Scope | Owner | Milestone |
-| ----- | ----- | ----- | --------- |
-| Set up Auth.js and protected-route access | Configure sign-in, sign-up, sign-out, session handling, and redirects for private views. | Dylan Cleghorn | Week 04 |
-| Create Supabase schema and ownership policies | Create the five tables, foreign keys, indexes, and row-level ownership rules. | Dylan Cleghorn | Week 04 |
-| Build workout-routine API routes | Implement validated, authorized `GET`/`POST` and `GET`/`PATCH`/`DELETE` routine endpoints. | Dylan Cleghorn | Week 04 |
-| Build routine-exercise API routes | Implement validated, authorized exercise create, update, and delete endpoints. | Dylan Cleghorn | Week 04 |
-| Build authenticated app shell and shared UI | Implement protected layout, navigation, heading, form, button, card, dialog, and empty-state components. | Dylan Cleghorn | Week 04 |
-| Build workout list and create/edit routine flow | Implement `/workouts`, `WorkoutCard`, routine form, loading, error, and empty states. | Dylan Cleghorn | Week 04 |
-| Build routine-detail exercise editor | Implement `/workouts/[id]`, exercise list, exercise form, ordering, and deletion confirmation. | Dylan Cleghorn | Week 04 |
-| Apply MuscleMAX responsive design system | Add the documented color tokens, typography, responsive container, card, and form patterns. | Dylan Cleghorn | Week 04 |
-| Build workout-session logging API and snapshot storage | Create session and completed-set writes that preserve actual completed values. | Dylan Cleghorn | Backlog |
-| Build dashboard and session-history views | Implement `/dashboard` and `/history`, including recent sessions, total count, and empty states. | Dylan Cleghorn | Backlog |
-| Test core authorization and CRUD paths | Manually test auth, ownership, validation, empty states, and responsive layout; record defects as follow-up issues. | Dylan Cleghorn | Week 04 |
+| Milestone   | Goal                                                                                                            |
+| ----------- | --------------------------------------------------------------------------------------------------------------- |
+| **Week 04** | Establish the secure foundation: database connection, authentication, protected shell, and workout-routine API. |
+| **Week 05** | Complete routine and exercise CRUD through the routine-list, detail, and exercise-editor interfaces.            |
+| **Week 06** | Deliver session history, dashboard, testing, deployment readiness, and final fixes before project submission.   |
+| **Week 07** | Post-submission reflection and optional improvements only; no required MVP work is scheduled.                   |
+
+| Issue                                                  | Scope                                                                                                         | Owner          | Milestone |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | -------------- | --------- |
+| Set up Auth.js and protected-route access              | Configure sign-in, sign-up, sign-out, session handling, and redirects for private views.                      | Dylan Cleghorn | Week 04   |
+| Create Supabase schema and ownership policies          | Create the five tables, foreign keys, indexes, and row-level ownership rules.                                 | Dylan Cleghorn | Week 04   |
+| Build workout-routine API routes                       | Implement validated, authorized `GET`/`POST` and `GET`/`PATCH`/`DELETE` routine endpoints.                    | Dylan Cleghorn | Week 04   |
+| Build authenticated app shell and shared UI            | Implement protected layout, navigation, heading, form, button, card, dialog, and empty-state components.      | Dylan Cleghorn | Week 04   |
+| Build routine-exercise API routes                      | Implement validated, authorized exercise create, update, and delete endpoints.                                | Dylan Cleghorn | Week 05   |
+| Build workout list and create/edit routine flow        | Implement `/workouts`, `WorkoutCard`, routine form, loading, error, and empty states.                         | Dylan Cleghorn | Week 05   |
+| Build routine-detail exercise editor                   | Implement `/workouts/[id]`, exercise list, exercise form, ordering, and deletion confirmation.                | Dylan Cleghorn | Week 05   |
+| Apply MuscleMAX responsive design system               | Add the documented color tokens, typography, responsive container, card, and form patterns.                   | Dylan Cleghorn | Week 05   |
+| Build workout-session logging API and snapshot storage | Create session and completed-set writes that preserve actual completed values.                                | Dylan Cleghorn | Week 06   |
+| Build dashboard and session-history views              | Implement `/dashboard` and `/history`, including recent sessions, total count, and testing/release readiness. | Dylan Cleghorn | Week 06   |
 
 ## Definition of Done
 
