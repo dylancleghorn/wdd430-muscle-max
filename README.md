@@ -33,13 +33,15 @@ Never commit `.env.local`, and never expose `SUPABASE_SECRET_KEY` in client-side
 
 All workout endpoints require a valid Auth.js session and enforce ownership on the server.
 
-| Method   | Endpoint            | Purpose                             |
-| -------- | ------------------- | ----------------------------------- |
-| `GET`    | `/api/workouts`     | List the signed-in user’s routines. |
-| `POST`   | `/api/workouts`     | Create a routine.                   |
-| `GET`    | `/api/workouts/:id` | Read one owned routine.             |
-| `PATCH`  | `/api/workouts/:id` | Update one owned routine.           |
-| `DELETE` | `/api/workouts/:id` | Delete one owned routine.           |
+| Method            | Endpoint                                  | Purpose                                     |
+| ----------------- | ----------------------------------------- | ------------------------------------------- |
+| `GET`             | `/api/workouts`                           | List the signed-in user’s routines.         |
+| `POST`            | `/api/workouts`                           | Create a routine.                           |
+| `GET`             | `/api/workouts/:id`                       | Read one owned routine.                     |
+| `PATCH`           | `/api/workouts/:id`                       | Update one owned routine.                   |
+| `DELETE`          | `/api/workouts/:id`                       | Delete one owned routine.                   |
+| `GET`, `POST`     | `/api/workouts/:id/exercises`             | List or add exercises to one owned routine. |
+| `PATCH`, `DELETE` | `/api/workouts/:id/exercises/:exerciseId` | Update or remove one owned exercise.        |
 
 ## Development workflow
 
