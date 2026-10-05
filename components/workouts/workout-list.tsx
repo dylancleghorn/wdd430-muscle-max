@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState, useTransition } from "react";
 
 import { EmptyState } from "@/components/ui/empty-state";
 import { PrimaryButton } from "@/components/ui/primary-button";
+import { WorkoutCard } from "@/components/workouts/workout-card";
 import type { WorkoutRoutine } from "@/lib/data/workouts";
 
 type WorkoutListProps = {
@@ -182,20 +182,7 @@ export function WorkoutList({ routines }: WorkoutListProps) {
           <ul className="mt-4 grid gap-4 sm:grid-cols-2">
             {routines.map((routine) => (
               <li key={routine.id}>
-                <Link
-                  className="block h-full rounded-xl border border-slate-700 bg-slate-800 p-5 transition hover:border-green-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400"
-                  href={`/workouts/${routine.id}`}
-                >
-                  <h3 className="text-lg font-semibold text-slate-50">
-                    {routine.name}
-                  </h3>
-                  <p className="mt-2 line-clamp-3 text-sm text-slate-300">
-                    {routine.notes || "No notes yet."}
-                  </p>
-                  <span className="mt-5 inline-block text-sm font-semibold text-green-400">
-                    Edit routine →
-                  </span>
-                </Link>
+                <WorkoutCard routine={routine} />
               </li>
             ))}
           </ul>

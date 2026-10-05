@@ -3,6 +3,11 @@ import { WorkoutList } from "@/components/workouts/workout-list";
 import { requirePageUser } from "@/lib/auth/user";
 import { listWorkoutRoutines } from "@/lib/data/workouts";
 
+export const metadata: Metadata = {
+  description: "Create and manage your private workout routines.",
+  title: "Workout routines",
+};
+
 export default async function WorkoutsPage() {
   const user = await requirePageUser();
   const routines = await listWorkoutRoutines(user.id);
@@ -16,3 +21,4 @@ export default async function WorkoutsPage() {
     </div>
   );
 }
+import type { Metadata } from "next";
