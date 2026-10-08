@@ -79,3 +79,18 @@ export const updateRoutineExerciseSchema = z
       value.plannedWeight !== undefined,
     { message: "Provide at least one exercise value to update." },
   );
+
+const completedSetSchema = z.object({
+  actualReps: positiveWholeNumberSchema,
+  actualSets: positiveWholeNumberSchema,
+  actualWeight: optionalWeightSchema,
+  displayOrder: displayOrderSchema.default(0),
+  exerciseName: exerciseNameSchema,
+});
+
+export const createWorkoutSessionSchema = z.object({
+  completedSets: z
+    .array(completedSetSchema)
+    .min(1, "Complete at least one exercise before saving a session."),
+  notes: routineNotesSchema.optional().default(null),
+});

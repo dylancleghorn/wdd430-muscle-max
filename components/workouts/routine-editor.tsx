@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState, useTransition } from "react";
 
 import { PrimaryButton } from "@/components/ui/primary-button";
+import { ExerciseForm } from "@/components/workouts/exercise-form";
 import type { RoutineExercise } from "@/lib/data/exercises";
 import type { WorkoutRoutine } from "@/lib/data/workouts";
 
@@ -327,11 +328,11 @@ export function RoutineEditor({ exercises, routine }: RoutineEditorProps) {
         <h2 className="text-2xl font-semibold text-slate-50">
           Add an exercise
         </h2>
-        <form
-          className="mt-5 grid gap-4 sm:grid-cols-2"
+        <ExerciseForm
+          defaultDisplayOrder={exercises.length}
+          idPrefix="new"
           onSubmit={createExercise}
         >
-          <ExerciseFields defaultDisplayOrder={exercises.length} prefix="new" />
           <div className="sm:col-span-2">
             <PrimaryButton
               aria-busy={isSavingExercise || isRefreshing}
@@ -348,7 +349,7 @@ export function RoutineEditor({ exercises, routine }: RoutineEditorProps) {
               )}
             </PrimaryButton>
           </div>
-        </form>
+        </ExerciseForm>
       </section>
 
       <section>
@@ -364,11 +365,11 @@ export function RoutineEditor({ exercises, routine }: RoutineEditorProps) {
                 className="rounded-xl border border-slate-700 bg-slate-800 p-5"
                 key={exercise.id}
               >
-                <form
-                  className="grid gap-4 sm:grid-cols-2"
+                <ExerciseForm
+                  exercise={exercise}
+                  idPrefix={exercise.id}
                   onSubmit={(event) => saveExercise(event, exercise.id)}
                 >
-                  <ExerciseFields exercise={exercise} prefix={exercise.id} />
                   <div className="flex flex-wrap gap-3 sm:col-span-2">
                     <PrimaryButton
                       aria-busy={isSavingExercise || isRefreshing}
@@ -392,7 +393,7 @@ export function RoutineEditor({ exercises, routine }: RoutineEditorProps) {
                       Remove exercise
                     </button>
                   </div>
-                </form>
+                </ExerciseForm>
               </li>
             ))}
           </ul>
@@ -432,104 +433,6 @@ export function RoutineEditor({ exercises, routine }: RoutineEditorProps) {
           title="Remove exercise?"
         />
       ) : null}
-    </div>
-  );
-}
-
-type ExerciseFieldsProps = {
-  defaultDisplayOrder?: number;
-  exercise?: RoutineExercise;
-  prefix: string;
-};
-
-function ExerciseFields({
-  defaultDisplayOrder = 0,
-  exercise,
-  prefix,
-}: ExerciseFieldsProps) {
-  return (
-    <>
-      <div className="sm:col-span-2">
-        <label
-          className="text-sm font-medium text-slate-200"
-          htmlFor={`${prefix}-name`}
-        >
-          Exercise name
-        </label>
-        <input
-          className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-slate-50 outline-none focus:border-green-400 focus:ring-2 focus:ring-green-400/30"
-          defaultValue={exercise?.name}
-          id={`${prefix}-name`}
-          maxLength={100}
-          name="name"
-          required
-        />
-      </div>
-      <NumberField
-        defaultValue={exercise?.plannedSets ?? ""}
-        id={`${prefix}-sets`}
-        label="Planned sets"
-        min={1}
-        name="plannedSets"
-      />
-      <NumberField
-        defaultValue={exercise?.plannedReps ?? ""}
-        id={`${prefix}-reps`}
-        label="Planned reps"
-        min={1}
-        name="plannedReps"
-      />
-      <NumberField
-        defaultValue={exercise?.plannedWeight ?? ""}
-        id={`${prefix}-weight`}
-        label="Weight (optional)"
-        min={0}
-        name="plannedWeight"
-        step="0.5"
-      />
-      <NumberField
-        defaultValue={exercise?.displayOrder ?? defaultDisplayOrder}
-        id={`${prefix}-order`}
-        label="Display order"
-        min={0}
-        name="displayOrder"
-      />
-    </>
-  );
-}
-
-type NumberFieldProps = {
-  defaultValue: number | string;
-  id: string;
-  label: string;
-  min: number;
-  name: string;
-  step?: string;
-};
-
-function NumberField({
-  defaultValue,
-  id,
-  label,
-  min,
-  name,
-  step = "1",
-}: NumberFieldProps) {
-  return (
-    <div>
-      <label className="text-sm font-medium text-slate-200" htmlFor={id}>
-        {label}
-      </label>
-      <input
-        className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-slate-50 outline-none focus:border-green-400 focus:ring-2 focus:ring-green-400/30"
-        defaultValue={defaultValue}
-        id={id}
-        min={min}
-        name={name}
-        required={name !== "plannedWeight"}
-        step={step}
-        type="number"
-      />
     </div>
   );
 }
