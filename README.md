@@ -2,6 +2,12 @@
 
 MuscleMAX is a private workout builder and tracker. It helps gym-goers organize routines, record completed sessions, and review their consistency.
 
+## Project links
+
+- Repository: [github.com/dylancleghorn/wdd430-muscle-max](https://github.com/dylancleghorn/wdd430-muscle-max)
+- Live deployment: to be added after the production Vercel deployment is published.
+- Product demo: to be added after the final deployed workflow is recorded.
+
 ## Team
 
 - Dylan Cleghorn
@@ -29,6 +35,12 @@ MuscleMAX is a private workout builder and tracker. It helps gym-goers organize 
 
 Never commit `.env.local`, and never expose `SUPABASE_SECRET_KEY` in client-side code.
 
+## Account provisioning and access
+
+MuscleMAX uses Google through Auth.js for both account creation and sign-in. A person's first successful Google sign-in automatically creates or updates their private application user record in Supabase; later sign-ins use that same account. There is intentionally no separate password-based registration form.
+
+Private pages and API endpoints require an authenticated session. Signing out returns the user to the public landing page and prevents access to private routes until they sign in again.
+
 ## Available API endpoints
 
 All workout endpoints require a valid Auth.js session and enforce ownership on the server.
@@ -53,6 +65,14 @@ All workout endpoints require a valid Auth.js session and enforce ownership on t
 - Run `npm run build` with internet access so Next.js can download the configured Geist font.
 - Configure the same environment variables in Vercel before deploying.
 
+## Deployment
+
+1. Create a Vercel project from this repository and use the default Next.js build settings.
+2. Add every variable listed in `.env.example` to the Vercel project's production environment.
+3. In Google Cloud Console, add the production callback URI: `https://<your-domain>/api/auth/callback/google`.
+4. Deploy, then verify the live sign-in, routine CRUD, exercise CRUD, session logging, history, dashboard, and sign-out workflows.
+5. Add the verified production URL and product-demo link to the **Project links** section above.
+
 ## Release checklist
 
 - Apply [`supabase/schema.sql`](supabase/schema.sql) to the production Supabase project.
@@ -61,4 +81,4 @@ All workout endpoints require a valid Auth.js session and enforce ownership on t
 
 ## Current scope and future work
 
-The completed MVP provides Google authentication, private workout routines and exercises, completed-workout snapshots, session history, and a dashboard summary. Future improvements include profile editing, additional reporting, and usability polish. See [`docs/project-specification.md`](docs/project-specification.md) for the full project plan.
+The completed MVP provides Google authentication, private workout routines and exercises, completed-workout snapshots, session history, and a dashboard summary. Future improvements include profile editing, additional reporting, usability polish, a final Lighthouse audit, and a published product demo. See [`docs/project-specification.md`](docs/project-specification.md) for the full project plan.
