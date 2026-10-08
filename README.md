@@ -6,7 +6,6 @@ MuscleMAX is a private workout builder and tracker. It helps gym-goers organize 
 
 - Repository: [github.com/dylancleghorn/wdd430-muscle-max](https://github.com/dylancleghorn/wdd430-muscle-max)
 - Live deployment: [wdd430-muscle-max.vercel.app](https://wdd430-muscle-max.vercel.app)
-- Product demo summary: included below.
 
 ## Product demo summary
 
