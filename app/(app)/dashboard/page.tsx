@@ -16,7 +16,7 @@ export default async function DashboardPage() {
         Dashboard
       </PageTitle>
       <section className="rounded-xl border border-slate-700 bg-slate-800 p-6">
-        <p className="text-sm font-medium text-slate-400">Completed workouts</p>
+        <p className="text-sm font-medium text-slate-300">Completed workouts</p>
         <p className="mt-2 text-4xl font-bold text-green-400">
           {totalSessions}
         </p>
