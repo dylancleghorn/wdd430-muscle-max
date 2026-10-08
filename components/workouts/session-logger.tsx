@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { PrimaryButton } from "@/components/ui/primary-button";
+import { RestTimer } from "@/components/workouts/rest-timer";
 import type { RoutineExercise } from "@/lib/data/exercises";
 import type { WorkoutRoutine } from "@/lib/data/workouts";
 
@@ -124,6 +125,7 @@ export function SessionLogger({ exercises, routine }: SessionLoggerProps) {
         Record what you completed today. This saves a permanent snapshot for
         your history.
       </p>
+      <RestTimer />
       {completedExercises.length === 0 ? (
         <p className="mt-5 rounded-lg border border-dashed border-slate-600 p-4 text-slate-300">
           Add at least one exercise before logging this workout.
