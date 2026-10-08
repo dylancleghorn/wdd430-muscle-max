@@ -5,7 +5,7 @@ MuscleMAX is a private workout builder and tracker. It helps gym-goers organize 
 ## Project links
 
 - Repository: [github.com/dylancleghorn/wdd430-muscle-max](https://github.com/dylancleghorn/wdd430-muscle-max)
-- Live deployment: to be added after the production Vercel deployment is published.
+- Live deployment: [wdd430-muscle-max.vercel.app](https://wdd430-muscle-max.vercel.app)
 - Product demo: to be added after the final deployed workflow is recorded.
 
 ## Team
@@ -78,6 +78,17 @@ All workout endpoints require a valid Auth.js session and enforce ownership on t
 - Apply [`supabase/schema.sql`](supabase/schema.sql) to the production Supabase project.
 - Add the values from `.env.example` to the Vercel project, including the production Auth.js URL and Google OAuth callback URI.
 - Verify Google sign-in, routine and exercise CRUD, session logging, history, dashboard counts, empty states, and a narrow mobile layout before submitting.
+
+## Lighthouse audit
+
+Mobile Lighthouse 13.4.0 audits were run against the production deployment on October 8, 2026.
+
+| Page                                                           | Performance | Accessibility | Best Practices | SEO |
+| -------------------------------------------------------------- | ----------- | ------------- | -------------- | --- |
+| [`/dashboard`](https://wdd430-muscle-max.vercel.app/dashboard) | 96          | 100           | 100            | 100 |
+| Routine detail                                                 | 99          | 100           | 100            | 100 |
+
+The reports found no critical issues. The remaining performance suggestions are minor JavaScript and browser-cache optimization opportunities and do not affect the rubric's accessibility, best-practices, or SEO criteria.
 
 ## Current scope and future work
 
