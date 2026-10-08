@@ -9,16 +9,32 @@ type UpsertUserInput = {
   name: string | null;
 };
 
+type ProvisionedUser = {
+  id: string;
+};
+
 export async function upsertUser({
   email,
   id,
   imageUrl,
   name,
-}: UpsertUserInput): Promise<void> {
-  const { error } = await getSupabaseServerClient().from("users").upsert(
+}: UpsertUserInput): Promise<ProvisionedUser> {
+  const supabase = getSupabaseServerClient();
+  const { data: existingUser, error: lookupError } = await supabase
+    .from("users")
+    .select("id")
+    .eq("email", email)
+    .maybeSingle();
+
+  if (lookupError) {
+    throw new Error("Unable to save the signed-in user.");
+  }
+
+  const userId = existingUser?.id ?? id;
+  const { error } = await supabase.from("users").upsert(
     {
       email,
-      id,
+      id: userId,
       image_url: imageUrl,
       name,
     },
@@ -28,4 +44,6 @@ export async function upsertUser({
   if (error) {
     throw new Error("Unable to save the signed-in user.");
   }
+
+  return { id: userId };
 }

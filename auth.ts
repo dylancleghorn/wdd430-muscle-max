@@ -12,6 +12,19 @@ const protectedPathPrefixes = [
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
+    async jwt({ token, user }) {
+      if (user?.email && user.id) {
+        const provisionedUser = await upsertUser({
+          email: user.email,
+          id: user.id,
+          imageUrl: user.image ?? null,
+          name: user.name ?? null,
+        });
+        token.sub = provisionedUser.id;
+      }
+
+      return token;
+    },
     async authorized({ auth: session, request }) {
       const isProtectedPath = protectedPathPrefixes.some((pathPrefix) =>
         request.nextUrl.pathname.startsWith(pathPrefix),
@@ -25,23 +38,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       }
 
       return session;
-    },
-    async signIn({ user }) {
-      if (!user.id || !user.email) {
-        return false;
-      }
-
-      try {
-        await upsertUser({
-          email: user.email,
-          id: user.id,
-          imageUrl: user.image ?? null,
-          name: user.name ?? null,
-        });
-        return true;
-      } catch {
-        return false;
-      }
     },
   },
   pages: {
