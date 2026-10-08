@@ -24,7 +24,7 @@ export function SessionList({ sessions }: SessionListProps) {
               {session.routineName ?? "Completed workout"}
             </h2>
             <time
-              className="text-sm text-slate-400"
+              className="text-sm text-slate-300"
               dateTime={session.completedAt}
             >
               {formatDate(session.completedAt)}
@@ -37,7 +37,7 @@ export function SessionList({ sessions }: SessionListProps) {
                 key={`${session.id}-${set.displayOrder}`}
               >
                 <span>{set.exerciseName}</span>
-                <span className="text-slate-400">
+                <span className="text-slate-300">
                   {set.actualSets} × {set.actualReps}
                   {set.actualWeight === null ? "" : ` at ${set.actualWeight}`}
                 </span>

@@ -31,7 +31,7 @@ export function LegalPage({ children, description, title }: LegalPageProps) {
             {title}
           </h1>
           <p className="mt-4 text-lg leading-8 text-slate-300">{description}</p>
-          <p className="mt-4 text-sm text-slate-400">
+          <p className="mt-4 text-sm text-slate-300">
             Last updated: October 1, 2026
           </p>
           <div className="mt-10 space-y-8 text-slate-300">{children}</div>

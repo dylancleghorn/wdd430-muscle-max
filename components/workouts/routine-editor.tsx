@@ -288,7 +288,7 @@ export function RoutineEditor({ exercises, routine }: RoutineEditorProps) {
               htmlFor="routine-notes"
             >
               Notes{" "}
-              <span className="font-normal text-slate-400">(optional)</span>
+              <span className="font-normal text-slate-300">(optional)</span>
             </label>
             <textarea
               className="mt-1 min-h-28 w-full rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-slate-50 outline-none focus:border-green-400 focus:ring-2 focus:ring-green-400/30"

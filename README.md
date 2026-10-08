@@ -6,7 +6,13 @@ MuscleMAX is a private workout builder and tracker. It helps gym-goers organize 
 
 - Repository: [github.com/dylancleghorn/wdd430-muscle-max](https://github.com/dylancleghorn/wdd430-muscle-max)
 - Live deployment: [wdd430-muscle-max.vercel.app](https://wdd430-muscle-max.vercel.app)
-- Product demo: to be added after the final deployed workflow is recorded.
+- Product demo summary: included below.
+
+## Product demo summary
+
+MuscleMAX helps people keep their workouts in one place instead of relying on random notes, memory, or multiple apps. Users can create routines, add exercises, log completed workouts, and look back at their recent training activity. It is built for gym-goers and beginners who want a simple, private way to stay organized and consistent.
+
+The main flow is straightforward: sign in with Google, create a workout routine, and add the exercises you plan to do. After finishing a workout, log what you actually completed and save it as a session. The dashboard and history pages then show recent workouts and a total session count, making it easier to see progress and keep up the habit.
 
 ## Team
 
@@ -89,6 +95,8 @@ Mobile Lighthouse 13.4.0 audits were run against the production deployment on Oc
 | Routine detail                                                 | 99          | 100           | 100            | 100 |
 
 The reports found no critical issues. The remaining performance suggestions are minor JavaScript and browser-cache optimization opportunities and do not affect the rubric's accessibility, best-practices, or SEO criteria.
+
+Accessibility, Best Practices, and SEO are the strongest categories at 100; Performance is the weakest category at 96 on the dashboard audit.
 
 ## Current scope and future work
 

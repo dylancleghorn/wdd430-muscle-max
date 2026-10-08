@@ -123,7 +123,7 @@ export function WorkoutList({ routines }: WorkoutListProps) {
               Routine name
             </label>
             <input
-              className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-slate-50 outline-none placeholder:text-slate-500 focus:border-green-400 focus:ring-2 focus:ring-green-400/30"
+              className="mt-1 w-full rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-slate-50 outline-none placeholder:text-slate-300 focus:border-green-400 focus:ring-2 focus:ring-green-400/30"
               id="routine-name"
               maxLength={100}
               name="name"
@@ -136,10 +136,10 @@ export function WorkoutList({ routines }: WorkoutListProps) {
               htmlFor="routine-notes"
             >
               Notes{" "}
-              <span className="font-normal text-slate-400">(optional)</span>
+              <span className="font-normal text-slate-300">(optional)</span>
             </label>
             <textarea
-              className="mt-1 min-h-24 w-full rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-slate-50 outline-none placeholder:text-slate-500 focus:border-green-400 focus:ring-2 focus:ring-green-400/30"
+              className="mt-1 min-h-24 w-full rounded-lg border border-slate-600 bg-slate-950 px-3 py-2 text-slate-50 outline-none placeholder:text-slate-300 focus:border-green-400 focus:ring-2 focus:ring-green-400/30"
               id="routine-notes"
               maxLength={1000}
               name="notes"
@@ -172,7 +172,7 @@ export function WorkoutList({ routines }: WorkoutListProps) {
           <h2 className="text-2xl font-semibold text-slate-50">
             Your routines
           </h2>
-          <p className="text-sm text-slate-400">{routines.length} total</p>
+          <p className="text-sm text-slate-300">{routines.length} total</p>
         </div>
         {routines.length === 0 ? (
           <div className="mt-4">

@@ -50,7 +50,7 @@ export function AppHeader({ userName }: AppHeaderProps) {
           >
             Profile
           </Link>
-          <span className="hidden max-w-36 truncate text-sm text-slate-400 md:inline">
+          <span className="hidden max-w-36 truncate text-sm text-slate-300 md:inline">
             {userName || "Member"}
           </span>
           <SignOutButton />
