@@ -5,8 +5,10 @@ import { FormEvent, useState, useTransition } from "react";
 
 import { EmptyState } from "@/components/ui/empty-state";
 import { PrimaryButton } from "@/components/ui/primary-button";
+import { TemplateGallery } from "@/components/workouts/template-gallery";
 import { WorkoutCard } from "@/components/workouts/workout-card";
 import type { WorkoutRoutine } from "@/lib/data/workouts";
+import { workoutTemplates } from "@/lib/workout-templates";
 
 type WorkoutListProps = {
   routines: WorkoutRoutine[];
@@ -104,6 +106,7 @@ export function WorkoutList({ routines }: WorkoutListProps) {
 
   return (
     <div className="space-y-8">
+      <TemplateGallery templates={workoutTemplates} />
       <section className="rounded-xl border border-slate-700 bg-slate-800 p-5 sm:p-6">
         <h2 className="text-xl font-semibold text-slate-50">
           Create a routine
